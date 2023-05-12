@@ -10,6 +10,16 @@
     background-color: themed("bgSoft");
     color: themed("textColor");
 
+    // responsive for mobile screen
+    @include mobile {
+      display: none;
+    }
+
+    // responsive for ipad screen
+    @include tablet {
+      display: none;
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }
