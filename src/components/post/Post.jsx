@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import Comments from '../comments/Comments';
 import { useState } from 'react';
 
+import moment from "moment";
+
 const Post = ({ post }) => {
   const liked = true;
 
@@ -27,7 +29,7 @@ const Post = ({ post }) => {
               <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <span className='name'>{post.name}</span>
               </Link>
-              <span className='date'>1 minute ago</span>
+              <span className='date'>{moment(post.creation_date).fromNow()}</span>
             </div>
           </div>
           <MoreHorizIcon />

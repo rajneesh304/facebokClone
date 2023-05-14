@@ -12,7 +12,8 @@ const Login = () => {
 
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setInputs(prev => {
       return {
@@ -26,9 +27,10 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       await login(inputs);
-      navigate("/")
+      navigate("/", { replace: true });
     } catch (err) {
       setError(err.response.data)
     }

@@ -17,22 +17,44 @@
         display: flex;
         align-items: center;
         gap: 20px;
+        justify-content: space-between;
 
-        img {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          object-fit: cover;
+        .left {
+          display: flex;
+          align-items: center;
+          flex: 3;
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          input {
+            border: none;
+            outline: none;
+            padding: 20px 10px;
+            width: 100%;
+            background-color: transparent;
+            color: themed("textColor");
+          }
         }
 
-        input {
-          border: none;
-          outline: none;
-          padding: 20px 10px;
-          background-color: transparent;
-          width: 60%;
-          color: themed("textColor");
+        .right {
+          display: flex;
+          justify-content: flex-end;
+          flex: 1;
+
+          .file {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 0px;
+          }
         }
+
+
       }
 
       hr {
