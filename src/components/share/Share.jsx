@@ -31,17 +31,44 @@ const Share = () => {
     },
   })
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    mutation.mutate({ desc })
-
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      console.log(formData);
+      const res = await makeRequest.post("/upload", formData);
+      console.log("resData:" + res.data);
+      return res.data;
+    } catch (e) {
+      console.log(e);
+    }
   }
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      let imgUrl = "";
+      if (file) imgUrl = await upload();
+      await mutation.mutate({ desc, img: imgUrl })
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setFile(null);
+      setDesc("");
+    }
+  }
+
   return (
     <div className="share">
       <div className="container">
         <div className="top">
-          <img src={currentUser.profilePic} alt="" />
-          <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={e => setDesc(e.target.value)} />
+          <div className="left">
+            <img src={currentUser.profilePic} alt="" />
+            <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={e => setDesc(e.target.value)} value={desc} />
+          </div>
+          <div className="right">
+            {file && <img className="file" alt="" src={URL.createObjectURL(file)} />}
+          </div>
         </div>
         <hr />
         <div className="bottom">

@@ -12,7 +12,6 @@ const Posts = () => {
       return res.data
     })
   }
-  //TEMPORARY useQuery({ queryKey: ['todos'], queryFn: getTodos })useQuery({ queryKey: ['todos'], queryFn: getTodos })
   const { isLoading, error, data } = useQuery({
     queryKey: ['posts'],
     queryFn: getPosts,
